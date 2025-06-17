@@ -6,7 +6,7 @@ DUP1  // C
 CALLDATALOAD(32) // D
 1 // curr
 
-JUMPI(done, XOR(1, DUP2))
+JUMPI(done, EQ(1, DUP2))
 
 again:
 
@@ -17,7 +17,7 @@ MOD(DUP5, DUP2) // M
 // next = (prev + curr * (P - C/D)) mod P
 ADDMOD(DUP6, MULMOD(DUP5, SUB(DUP9, DIV(DUP8, DUP5)), DUP1), DUP6)
 
-JUMPI(done, XOR(1, DUP2))
+JUMPI(done, EQ(1, DUP2))
 
 // C = D, D = M, prev = curr, curr = next
 SWAP1 SWAP5 POP
@@ -39,7 +39,7 @@ SWAP2 POP
 
 // stack is: P, C, prev, D, curr
 
-JUMPI(again, EQ(1, DUP2))
+JUMPI(again, XOR(1, DUP2))
 0 MSTORE
 RETURN(0, 32)
 
