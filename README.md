@@ -2,6 +2,9 @@
 
 This implements some utility functions for the secp256k1 ECDSA curve in EVM assembly.
 
+## Support
+* Multiplicative Inverse
+
 ## Constants
 | Parameter | Value | Note |
 | :-------: | :---: | :--- |
