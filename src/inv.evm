@@ -1,0 +1,48 @@
+// find inverse, X, of N in P, such that X * N = K * P + 1 for integers 0 < K, N, X < P
+
+CALLDATALOAD(0) // p
+DUP1  // C
+0 // prev
+CALLDATALOAD(32) // D
+1 // curr
+
+JUMPI(done, XOR(1, DUP2))
+
+again:
+
+MOD(DUP5, DUP2) // M
+
+// stack is: P, C, prev, D, curr, M
+
+// next = (prev + curr * (P - C/D)) mod P
+ADDMOD(DUP6, MULMOD(DUP5, SUB(DUP9, DIV(DUP8, DUP5)), DUP1), DUP6)
+
+JUMPI(done, XOR(1, DUP2))
+
+// C = D, D = M, prev = curr, curr = next
+SWAP1 SWAP5 POP
+SWAP3 POP
+
+// stack is: P, D, curr, C, prev
+
+
+MOD(DUP3, DUP4) // M
+
+// stack is: P, D, curr, C, prev, M
+
+// next = (prev + curr * (P - C/D)) mod P
+ADDMOD(DUP4, MULMOD(DUP7, SUB(DUP9, DIV(DUP6, DUP7)), DUP1), DUP6)
+
+// C = D, D = M, prev = curr, curr = next
+SWAP2 POP
+SWAP2 POP
+
+// stack is: P, C, prev, D, curr
+
+JUMPI(again, EQ(1, DUP2))
+0 MSTORE
+RETURN(0, 32)
+
+done:
+0 MSTORE
+RETURN(0, 32)
