@@ -1,4 +1,5 @@
 // find inverse, X, of N in P, such that X * N = K * P + 1 for integers 0 < K, N, X < P
+// see src/inv.c:inv(uint64_t) for algorithm
 
 CALLDATALOAD(0) // p
 DUP1  // C
