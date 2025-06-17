@@ -1,5 +1,5 @@
 #include <assert.h>
-#include <stdio.h>
+#include <stdint.h>
 
 uint64_t inv(uint64_t p, uint64_t d) {
     assert(d != 0);
