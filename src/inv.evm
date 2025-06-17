@@ -6,7 +6,10 @@ DUP1  // C
 CALLDATALOAD(32) // D
 1 // curr
 
-JUMPI(done, EQ(1, DUP2))
+JUMPI(again, XOR(1, DUP2))
+
+0 MSTORE
+RETURN(0, 32)
 
 again:
 
